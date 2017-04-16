@@ -1,0 +1,182 @@
+# vi syntax=python
+ROOT = '../../../../../../..'
+prebuilt_cxx_library(
+    name = 'folly',
+    lib_dir = 'dynamic/lib',
+    header_namespace = '',
+    exported_headers = glob(['folly/**/*.h']),
+    include_dirs = ['dynamic/include'],
+    exported_deps = [
+        ':glog',
+        ':double-conversion',
+        ':ssl',
+        ':event',
+    ],
+    exported_preprocessor_flags = [
+        '-std=gnu++14',
+    ],
+    exported_linker_flags = [
+        '-lssl',
+        '-lssl3',
+        '-lcrypto',
+        '-levent',
+        '-levent_core',
+        # '-lcrypt',
+    ],
+    visibility = ['PUBLIC']
+)
+
+# prebuilt_native_library(
+#     name = 'wangle',
+#     native_libs = 'dynamic/lib/libwangle.so',
+#     visibility = ['PUBLIC'],
+# )
+
+prebuilt_cxx_library(
+    name = 'wangle',
+    lib_dir = 'dynamic/lib',
+    header_namespace = '',
+    exported_headers = glob(['wangle/**/*.h']),
+    include_dirs = ['dynamic/include'],
+    exported_deps = [
+        ':folly',
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'thrift',
+    lib_dir = 'dynamic/lib',
+    header_namespace = '',
+    exported_headers = glob(['thrift/**/*.h']),
+    include_dirs = ['dynamic/include'],
+    exported_deps = [
+        ':folly',
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'proxygen',
+    lib_dir = 'dynamic/lib',
+    lib_name = 'proxygenlib',
+    header_namespace = '',
+    exported_headers = glob(['proxygen/**/*.h']),
+    include_dirs = ['dynamic/include'],
+    exported_deps = [
+        ':folly',
+        ':wangle',
+        ':z',
+    ],
+    exported_preprocessor_flags = ['-std=gnu++14'],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'gflags',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['gflags/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_linker_flags = [
+        '-pthread',
+        '-lpthread',
+    ],
+    exported_deps = [
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'glog',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['glog/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+        ':gflags',
+        ':unwind',
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'unwind',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['unwind/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+        ':lzma'
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'lzma',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['lzma/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'double-conversion',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['double-conversion/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+    ],
+    visibility = ['PUBLIC']
+)
+
+prebuilt_cxx_library(
+    name = 'ssl',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['ssl/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+        ':crypto',
+        ':dl',
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'crypto',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['crypto/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+        # ':dl',
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'dl',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['dl/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'event',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['event/*.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+    ],
+    visibility = ['PUBLIC']
+)
+prebuilt_cxx_library(
+    name = 'z',
+    lib_dir = ROOT + '/usr/lib/x86_64-linux-gnu',
+    header_namespace = '',
+    exported_headers = glob(['zlib.h']),
+    include_dirs = [ROOT + '/usr/include'],
+    exported_deps = [
+    ],
+    visibility = ['PUBLIC']
+)

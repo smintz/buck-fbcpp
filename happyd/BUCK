@@ -1,0 +1,24 @@
+# vi syntax=python
+cxx_binary(
+    name = "happyd",
+    srcs = [
+        'Main.cpp'
+    ],
+    headers = [
+    ],
+    compiler_flags = [
+      "-std=gnu++11",
+    ],
+    linker_flags = [
+        # '-I/usr/include',
+        # '-L/usr/lib/x86_64-linux-gnu',
+        # '-pthread',
+        # '-lgflags',
+        # '-lglog',
+    ],
+    deps = [
+        '//fbcpp:folly',
+        '//fbcpp:gflags',
+        '//fbcpp:glog',
+    ]
+)

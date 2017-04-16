@@ -1,0 +1,11 @@
+[thrift]
+    compiler = fbcpp/dynamic/bin/thrift1
+    compiler2 = fbcpp/dynamic/bin/thrift1
+    cpp_library = //fbcpp:thrift
+    cpp2_library = //fbcpp:thrift
+    cpp_reflection_library = //fbcpp:thrift
+    cpp_frozen_library = //fbcpp:thrift
+    python_library = //external/python:pythrift
+[cxx]
+    untracked_headers_whitelist = /usr/include/.*, /usr/local/include/.*
+    pch_enabled = true

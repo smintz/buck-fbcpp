@@ -1,0 +1,20 @@
+# vi syntax=python
+cxx_binary(
+    name = "curl",
+    srcs = [
+        'CurlClientMain.cpp',
+        'CurlClient.cpp',
+    ],
+    headers = [
+        'CurlClient.h',
+    ],
+    compiler_flags = [
+      "-std=gnu++14",
+    ],
+    deps = [
+        '//fbcpp:proxygen',
+        '//fbcpp:folly',
+        '//fbcpp:gflags',
+        '//fbcpp:glog',
+    ]
+)
