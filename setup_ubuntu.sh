@@ -14,7 +14,7 @@ echo "It requires that you run it as root. sudo works great for that."
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
 source /etc/lsb-release
 add-apt-repository -y "deb http://apt.llvm.org/${DISTRIB_CODENAME}/ llvm-toolchain-${DISTRIB_CODENAME}-3.9 main"
-wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+curl http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
 apt update
 
 apt install --yes \
@@ -47,7 +47,7 @@ apt install --yes \
     make \
     pkg-config \
     scons \
-    wget \
+    curl \
     zip \
     zlib1g-dev
 
@@ -67,12 +67,12 @@ export CPPFLAGS="-I${LINK}/include -std=gnu++14"
 
 cd /tmp
 
-wget -O /tmp/folly-${FB_VERSION}.tar.gz https://github.com/facebook/folly/archive/v${FB_VERSION}.tar.gz
-wget -O /tmp/wangle-${FB_VERSION}.tar.gz https://github.com/facebook/wangle/archive/v${FB_VERSION}.tar.gz
-wget -O /tmp/fbthrift-${FB_VERSION}.tar.gz https://github.com/facebook/fbthrift/archive/v${FB_VERSION}.tar.gz
-wget -O /tmp/proxygen-${FB_VERSION}.tar.gz https://github.com/facebook/proxygen/archive/v${FB_VERSION}.tar.gz
-wget -O /tmp/mstch-master.tar.gz https://github.com/no1msd/mstch/archive/master.tar.gz
-wget -O /tmp/zstd-${ZSTD_VERSION}.tar.gz https://github.com/facebook/zstd/archive/v${ZSTD_VERSION}.tar.gz
+curl -L -o /tmp/folly-${FB_VERSION}.tar.gz https://github.com/facebook/folly/archive/v${FB_VERSION}.tar.gz
+curl -L -o /tmp/wangle-${FB_VERSION}.tar.gz https://github.com/facebook/wangle/archive/v${FB_VERSION}.tar.gz
+curl -L -o /tmp/fbthrift-${FB_VERSION}.tar.gz https://github.com/facebook/fbthrift/archive/v${FB_VERSION}.tar.gz
+curl -L -o /tmp/proxygen-${FB_VERSION}.tar.gz https://github.com/facebook/proxygen/archive/v${FB_VERSION}.tar.gz
+curl -L -o /tmp/mstch-master.tar.gz https://github.com/no1msd/mstch/archive/master.tar.gz
+curl -L -o /tmp/zstd-${ZSTD_VERSION}.tar.gz https://github.com/facebook/zstd/archive/v${ZSTD_VERSION}.tar.gz
 
 tar xzvf folly-${FB_VERSION}.tar.gz
 tar xzvf wangle-${FB_VERSION}.tar.gz
