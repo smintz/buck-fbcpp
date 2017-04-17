@@ -98,7 +98,7 @@ make ${MAKE_OPTS} install
 popd
 
 pushd wangle-${FB_VERSION}/wangle
-sed "s/add_library(wangle.*/add_library(wangle STATIC" CMakeLists.txt -i.orig
+sed "s/add_library(wangle.*/add_library(wangle STATIC/" CMakeLists.txt -i.orig
 cmake -DCMAKE_INSTALL_PREFIX:PATH=${DEST}-${FB_VERSION} -DBUILD_SHARED_LIBS:BOOL=ON .
 make ${MAKE_OPTS}
 # Wangle tests are broken. Disabling ctest.
